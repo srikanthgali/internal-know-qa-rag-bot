@@ -1,0 +1,64 @@
+# Core RAG Framework
+llama-index>=0.10.12
+llama-index-core>=0.10.12
+llama-index-llms-openai>=0.1.6
+llama-index-embeddings-openai>=0.1.6
+
+# Vector Store
+faiss-cpu>=1.7.4
+# faiss-gpu>=1.7.4  # Uncomment if using GPU
+
+# OpenAI
+openai>=1.12.0
+
+# API Framework
+fastapi>=0.109.2
+uvicorn[standard]>=0.27.1
+pydantic>=2.6.1
+pydantic-settings>=2.1.0
+python-multipart>=0.0.9
+
+# Streamlit UI
+streamlit>=1.31.1
+streamlit-chat>=0.1.1
+streamlit-extras>=0.3.6
+
+# Document Processing
+pypdf>=4.0.1
+python-docx>=1.1.0
+python-pptx>=0.6.23
+openpyxl>=3.1.2
+pandas>=2.2.0
+
+# Text Processing
+tiktoken>=0.6.0
+nltk>=3.8.1
+beautifulsoup4>=4.12.3
+markdown>=3.5.2
+
+# Configuration & Environment
+python-dotenv>=1.0.1
+pyyaml>=6.0.1
+
+# Logging & Monitoring
+loguru>=0.7.2
+
+# HTTP & Async
+httpx>=0.26.0
+aiofiles>=23.2.1
+
+# Utilities
+tenacity>=8.2.3
+tqdm>=4.66.2
+requests>=2.31.0
+
+# Date & Time
+python-dateutil>=2.8.2
+
+# Development & Testing (Optional but recommended)
+pytest>=8.0.0
+pytest-asyncio>=0.23.5
+pytest-cov>=4.1.0
+ensure
+pyyaml
+-e.

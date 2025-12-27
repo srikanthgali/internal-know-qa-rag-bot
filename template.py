@@ -268,7 +268,6 @@ if __name__ == "__main__":
         print(f"Location: {summary['base_path']}")
         print(f"Items Created: {summary['new_items_created']}")
         print(f"Status: {summary['status']}")
-        print(f"Estimated Time: {summary['estimated_completion']}")
         print("\n📋 Key Features:")
         for feature in summary["key_features"]:
             print(f"   ✓ {feature}")
