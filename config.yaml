@@ -1,0 +1,68 @@
+# RAG Chatbot Configuration
+
+# Application Settings
+app:
+  name: "Internal Knowledge Base RAG Chatbot"
+  version: "1.0.0"
+  environment: "development"
+
+# OpenAI Settings
+openai:
+  model: "gpt-4.1-mini"
+  embedding_model: "text-embedding-ada-002"
+  temperature: 0.1
+  max_tokens: 1000
+  api_key_env: "OPENAI_API_KEY"
+
+# Document Processing
+document_processing:
+  chunk_size: 512
+  chunk_overlap: 50
+  separators: ["\n\n", "\n", ". ", " ", ""]
+  supported_formats: [".pdf", ".txt", ".docx", ".md"]
+
+# Vector Store Settings
+vector_store:
+  type: "faiss"
+  dimension: 1536  # OpenAI ada-002 embedding dimension
+  index_path: "vector_store/faiss_index"
+  metadata_path: "vector_store/metadata.json"
+
+# Retrieval Settings
+retrieval:
+  top_k: 5
+  similarity_threshold: 0.7
+  rerank: false
+
+# Generation Settings
+generation:
+  system_prompt: "You are a helpful AI assistant for internal knowledge base queries."
+  include_sources: true
+  max_context_length: 3000
+
+# API Settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  workers: 1
+
+# Streamlit Settings
+streamlit:
+  port: 8501
+  theme: "light"
+  max_history: 10
+
+# Logging
+logging:
+  level: "INFO"
+  log_dir: "logs"
+  log_to_file: true
+  log_to_console: true
+
+# Data Paths
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  vector_store: "vector_store"
+  logs: "logs"

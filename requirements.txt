@@ -3,10 +3,12 @@ llama-index>=0.10.12
 llama-index-core>=0.10.12
 llama-index-llms-openai>=0.1.6
 llama-index-embeddings-openai>=0.1.6
+llama-index-vector-stores-faiss>=0.1.2
 
 # Vector Store
 faiss-cpu>=1.7.4
 # faiss-gpu>=1.7.4  # Uncomment if using GPU
+numpy>=1.24.0
 
 # OpenAI
 openai>=1.12.0
@@ -20,21 +22,23 @@ python-multipart>=0.0.9
 
 # Streamlit UI
 streamlit>=1.31.1
-streamlit-chat>=0.1.1
-streamlit-extras>=0.3.6
+requests>=2.31.0
 
 # Document Processing
-pypdf>=4.0.1
+PyPDF2>=3.0.1
 python-docx>=1.1.0
 python-pptx>=0.6.23
 openpyxl>=3.1.2
 pandas>=2.2.0
 
-# Text Processing
+# Text Processing & NLP
+langchain>=0.1.0
+langchain-text-splitters>=0.0.1
 tiktoken>=0.6.0
-nltk>=3.8.1
 beautifulsoup4>=4.12.3
 markdown>=3.5.2
+html2text>=2020.1.16
+lxml>=5.1.0
 
 # Configuration & Environment
 python-dotenv>=1.0.1
@@ -42,6 +46,7 @@ pyyaml>=6.0.1
 
 # Logging & Monitoring
 loguru>=0.7.2
+colorama>=0.4.6
 
 # HTTP & Async
 httpx>=0.26.0
@@ -50,7 +55,6 @@ aiofiles>=23.2.1
 # Utilities
 tenacity>=8.2.3
 tqdm>=4.66.2
-requests>=2.31.0
 
 # Date & Time
 python-dateutil>=2.8.2
@@ -59,6 +63,8 @@ python-dateutil>=2.8.2
 pytest>=8.0.0
 pytest-asyncio>=0.23.5
 pytest-cov>=4.1.0
-ensure
-pyyaml
--e.
+black>=24.1.0
+ruff>=0.2.0
+
+# Install local package in editable mode
+-e .
