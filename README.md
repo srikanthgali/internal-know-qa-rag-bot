@@ -165,6 +165,8 @@ internal-know-qa-rag-bot/
 │   └── test_*.py        # Unit tests
 ├── evaluation_report.json   # Latest evaluation results
 └── config.yaml          # Application configuration
+└── assets/              # Static assets
+    └── demo.gif         # Demo gif video
 ```
 
 ## 🔧 Configuration
@@ -232,6 +234,12 @@ greeting_result = pipeline.query("Hello!")
 print(greeting_result["answer"])  # Returns friendly greeting
 print(greeting_result.get("is_greeting"))  # True
 ```
+## 📺 Demo
+
+Here's a quick demo of the GitLab KnowledgeBase QA chatbot in action:
+> **App Demo:**
+>
+> [![Watch the demo video](assets/demo.gif)]
 
 ## 🧪 Testing & Evaluation
 
