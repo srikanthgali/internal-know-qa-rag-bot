@@ -65,7 +65,10 @@ def render_chat(config: Dict[str, Any]):
     if prompt := st.chat_input("Ask a question about GitLab..."):
         # Add user message
         st.session_state.messages.append({"role": "user", "content": prompt})
-        display_message("user", prompt)
+
+        # Display user message immediately
+        with st.chat_message("user"):
+            st.markdown(prompt)
 
         # Query the API
         with st.spinner("🤔 Thinking..."):
@@ -86,8 +89,35 @@ def render_chat(config: Dict[str, Any]):
                         {"role": "assistant", "content": answer, "sources": sources}
                     )
 
-                    # Display assistant response
-                    display_message("assistant", answer, sources, show_debug=show_debug)
+                    # Display assistant response immediately
+                    with st.chat_message("assistant"):
+                        st.markdown(answer)
+
+                        # Display sources if available
+                        if sources:
+                            if len(sources) > 0:
+                                with st.expander(f"📚 Sources ({len(sources)})"):
+                                    for idx, source in enumerate(sources, 1):
+                                        score = source.get("score", 0)
+                                        st.markdown(
+                                            f"""
+                                        **Source {idx}**: `{source.get('source', 'Unknown')}`
+                                        **Relevance**: {score:.2%}
+                                        """
+                                        )
+                                        if show_debug:
+                                            st.json(source.get("metadata", {}))
+                            elif answer.startswith("I don't have enough information"):
+                                st.info(
+                                    "ℹ️ No relevant sources found in the knowledge base."
+                                )
+                            elif not any(
+                                greeting in answer.lower()
+                                for greeting in ["hello", "hi", "i'm", "i can help"]
+                            ):
+                                st.info(
+                                    "ℹ️ No relevant sources found in the knowledge base."
+                                )
 
                     # Show debug info if enabled
                     if show_debug:
@@ -104,6 +134,9 @@ def render_chat(config: Dict[str, Any]):
                                     ),
                                 }
                             )
+
+                    # Force rerun to update the full chat history
+                    st.rerun()
 
                 else:
                     st.error(f"❌ API Error: {response.status_code}")
