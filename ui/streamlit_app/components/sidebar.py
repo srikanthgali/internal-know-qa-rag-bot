@@ -1,83 +1,104 @@
 """
-Sidebar components for the Streamlit UI.
-
-Configuration, settings, and controls.
+Sidebar component for the Streamlit app.
 """
 
 import streamlit as st
 import requests
+from typing import Dict, Any
 
 
-def render_api_status(api_url: str) -> None:
+def render_sidebar() -> Dict[str, Any]:
     """
-    Display API connection status indicator.
-
-    Args:
-        api_url: API endpoint URL
-    """
-    try:
-        response = requests.get(f"{api_url}/health", timeout=3)
-        if response.status_code == 200:
-            st.success("✅ API Online")
-        else:
-            st.warning(f"⚠️ API Status: {response.status_code}")
-    except requests.exceptions.ConnectionError:
-        st.error("❌ Cannot connect to API")
-    except requests.exceptions.Timeout:
-        st.error("❌ API timeout")
-    except Exception as e:
-        st.error(f"❌ Error: {str(e)}")
-
-
-def render_conversation_controls() -> bool:
-    """
-    Render conversation management controls.
+    Render the sidebar with configuration options.
 
     Returns:
-        True if conversation should be cleared
+        Dictionary with configuration settings
     """
-    st.subheader("💬 Conversation")
+    with st.sidebar:
+        st.title("⚙️ Settings")
 
-    col1, col2 = st.columns(2)
+        # API Connection Status (compact)
+        api_url = st.session_state.get("api_url", "http://localhost:8000")
 
-    with col1:
-        clear = st.button("🗑️ Clear", use_container_width=True)
+        # Check API health
+        try:
+            response = requests.get(f"{api_url}/health", timeout=2)
+            if response.status_code == 200:
+                st.success("✅ Connected to API")
+            else:
+                st.error("⚠️ API Error")
+        except requests.exceptions.RequestException:
+            st.error("❌ API Unavailable")
 
-    with col2:
-        # Future: export conversation
-        st.button("💾 Export", use_container_width=True, disabled=True)
+        st.divider()
 
-    return clear
+        # Query Settings
+        st.subheader("🔍 Query Settings")
 
+        max_sources = st.slider(
+            "Maximum Sources",
+            min_value=1,
+            max_value=10,
+            value=st.session_state.get("max_sources", 5),
+            help="Number of source documents to retrieve",
+        )
 
-def render_settings() -> Dict:
-    """
-    Render application settings.
+        st.divider()
 
-    Returns:
-        Dict of current settings
-    """
-    st.subheader("⚙️ Settings")
+        # Model Information
+        st.subheader("🤖 Model Info")
+        st.info(
+            """
+            **LLM**: GPT-4.1 mini
+            **Embeddings**: Ada-002
+            **Vector Store**: FAISS
+            """,
+            icon="ℹ️",
+        )
 
-    settings = {}
+        st.divider()
 
-    # Temperature setting (for future LLM control)
-    settings["temperature"] = st.slider(
-        "Response Creativity",
-        min_value=0.0,
-        max_value=1.0,
-        value=0.7,
-        step=0.1,
-        help="Higher values make responses more creative",
-    )
+        # About Section
+        st.subheader("ℹ️ About")
+        st.markdown(
+            """
+            **GitLab Knowledge Q&A Bot**
 
-    # Max sources
-    settings["max_sources"] = st.number_input(
-        "Max Sources",
-        min_value=1,
-        max_value=10,
-        value=3,
-        help="Number of source documents to display",
-    )
+            Ask questions about GitLab company, values, policies,
+            processes, and best practices.
 
-    return settings
+            Built with:
+            - 🦙 LlamaIndex
+            - 🤖 OpenAI GPT-4.1 mini
+            - 🔍 FAISS Vector Search
+            - 🎈 Streamlit
+            """
+        )
+
+        # Advanced Settings (collapsible)
+        with st.expander("🔧 Advanced"):
+            show_debug = st.checkbox(
+                "Show Debug Info",
+                value=st.session_state.get("show_debug", False),
+                help="Display additional debugging information",
+            )
+
+            # Only show API URL in advanced/debug mode
+            if show_debug:
+                st.text_input(
+                    "API URL",
+                    value=api_url,
+                    disabled=True,
+                    help="API endpoint (read-only)",
+                )
+
+        # Clear Chat Button
+        st.divider()
+        if st.button("🗑️ Clear Chat History", use_container_width=True):
+            st.session_state.messages = []
+            st.rerun()
+
+        return {
+            "max_sources": max_sources,
+            "show_debug": show_debug,
+        }
