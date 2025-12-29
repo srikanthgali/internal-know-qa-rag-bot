@@ -1,120 +1,212 @@
 {
-  "timestamp": "2025-12-28T23:13:28.270095",
+  "timestamp": "2025-12-29T14:24:51.377492",
   "summary": {
-    "avg_retrieval_score": 0.9033944123926617,
-    "avg_faithfulness": 0.8569112150789169,
-    "avg_relevance": 0.9178571428571428,
-    "avg_completeness": 0.8768253968253968,
-    "avg_overall_score": 0.8900754925668928,
-    "total_queries": 7,
+    "avg_retrieval_score": 0.904383750329415,
+    "avg_faithfulness": 0.8890923337934208,
+    "avg_relevance": 0.89,
+    "avg_completeness": 0.8722222222222222,
+    "avg_overall_score": 0.8905326529916241,
+    "total_queries": 8,
     "edge_case_queries": 2,
+    "greeting_queries": 4,
     "edge_case_handling": 1.0,
     "edge_cases_tested": 2,
+    "greeting_handling": 1.0,
+    "greetings_tested": 4,
     "variance_analysis": {
-      "faithfulness_std_dev": 0.09194178485565323,
-      "faithfulness_min": 0.67,
+      "faithfulness_std_dev": 0.050385965081248804,
+      "faithfulness_min": 0.8074074074074074,
       "faithfulness_max": 0.9482142857142859,
-      "completeness_std_dev": 0.08127691974795466,
+      "completeness_std_dev": 0.09211793682944862,
       "completeness_min": 0.7366666666666666,
       "completeness_max": 0.95,
-      "relevance_std_dev": 0.06805984761327974
+      "relevance_std_dev": 0.08048957341526562
     }
   },
   "queries": [
     {
+      "question": "Hi",
+      "answer": "Hello! \ud83d\udc4b I'm the GitLab Knowledge Q&A Assistant.\n\n                I can help you find information about:\n                \u2022 GitLab's mission, values, and culture\n                \u2022 Company policies and procedures\n                \u2022 Time off, leave types, and benefits\n                \u2022 Remote work practices\n                \u2022 Training and professional development\n                \u2022 And much more from the GitLab handbook!\n\n                What would you like to know about GitLab today?",
+      "metrics": {
+        "retrieval_score": 1.0,
+        "faithfulness": 1.0,
+        "relevance": 1.0,
+        "completeness": 1.0,
+        "overall": 1.0
+      },
+      "num_sources": 0,
+      "top_source_score": 0.0,
+      "is_greeting": true,
+      "is_intro": false
+    },
+    {
+      "question": "Hello! What can you help me with?",
+      "answer": "Hello! \ud83d\udc4b I'm the GitLab Knowledge Q&A Assistant.\n\n                I can help you find information about:\n                \u2022 GitLab's mission, values, and culture\n                \u2022 Company policies and procedures\n                \u2022 Time off, leave types, and benefits\n                \u2022 Remote work practices\n                \u2022 Training and professional development\n                \u2022 And much more from the GitLab handbook!\n\n                What would you like to know about GitLab today?",
+      "metrics": {
+        "retrieval_score": 1.0,
+        "faithfulness": 1.0,
+        "relevance": 1.0,
+        "completeness": 1.0,
+        "overall": 1.0
+      },
+      "num_sources": 0,
+      "top_source_score": 0.0,
+      "is_greeting": true,
+      "is_intro": false
+    },
+    {
+      "question": "Who are you?",
+      "answer": "I'm an AI assistant specialized in GitLab's internal knowledge base! \ud83e\udd8a\n\n                **What I can do:**\n                \u2022 Answer questions about GitLab policies, procedures, and culture\n                \u2022 Explain company values and operating principles\n                \u2022 Guide you through HR processes (PTO, benefits, etc.)\n                \u2022 Share information about remote work best practices\n                \u2022 Provide training and development resources\n\n                **How to use me:**\n                \u2022 Ask specific questions like \"How do I request time off?\"\n                \u2022 Inquire about policies like \"What is GitLab's mission?\"\n                \u2022 Seek guidance on processes like \"How does code review work?\"\n\n                **What I can't do:**\n                \u2022 Answer questions outside GitLab's knowledge base\n                \u2022 Provide personal advice or opinions\n                \u2022 Access external information or real-time data\n\n                Try asking me something about GitLab! For example: \"What is GitLab's approach to remote work?\" ",
+      "metrics": {
+        "retrieval_score": 1.0,
+        "faithfulness": 1.0,
+        "relevance": 1.0,
+        "completeness": 1.0,
+        "overall": 1.0
+      },
+      "num_sources": 0,
+      "top_source_score": 0.0,
+      "is_greeting": false,
+      "is_intro": true
+    },
+    {
+      "question": "What can you do?",
+      "answer": "I'm an AI assistant specialized in GitLab's internal knowledge base! \ud83e\udd8a\n\n                **What I can do:**\n                \u2022 Answer questions about GitLab policies, procedures, and culture\n                \u2022 Explain company values and operating principles\n                \u2022 Guide you through HR processes (PTO, benefits, etc.)\n                \u2022 Share information about remote work best practices\n                \u2022 Provide training and development resources\n\n                **How to use me:**\n                \u2022 Ask specific questions like \"How do I request time off?\"\n                \u2022 Inquire about policies like \"What is GitLab's mission?\"\n                \u2022 Seek guidance on processes like \"How does code review work?\"\n\n                **What I can't do:**\n                \u2022 Answer questions outside GitLab's knowledge base\n                \u2022 Provide personal advice or opinions\n                \u2022 Access external information or real-time data\n\n                Try asking me something about GitLab! For example: \"What is GitLab's approach to remote work?\" ",
+      "metrics": {
+        "retrieval_score": 1.0,
+        "faithfulness": 1.0,
+        "relevance": 1.0,
+        "completeness": 1.0,
+        "overall": 1.0
+      },
+      "num_sources": 0,
+      "top_source_score": 0.0,
+      "is_greeting": false,
+      "is_intro": true
+    },
+    {
       "question": "What is GitLab's mission?",
-      "answer": "GitLab's mission is to enable everyone to contribute to and co-create the software that powers our world. This mission reflects the belief that all digital products should be open to contributions, whether they are legal documents, movie scripts, websites, or chip designs. GitLab aims to empower individuals by providing a platform where everyone can participate in the creation and development of software and other digital products. This inclusive approach supports collaboration and innovation across various domains.\n\nIn summary, GitLab\u2019s mission centers on openness, contribution, and co-creation, making it possible for anyone to engage with and help build the digital tools and software that shape our world.",
+      "answer": "GitLab's mission is to enable everyone to contribute to and co-create the software that powers our world. This mission reflects the belief that all digital products\u2014ranging from legal documents and movie scripts to websites and chip designs\u2014should be open to contributions. GitLab aims to empower individuals by providing a platform where everyone can participate in the creation and development of software and other digital content.\n\nIn summary, GitLab\u2019s mission centers on inclusivity and collaboration, fostering an environment where contributions come from a diverse range of people to collectively build and improve digital products. This mission is foundational to GitLab\u2019s purpose of empowering people through knowledge sharing, job access, and its software platform.",
       "metrics": {
         "retrieval_score": 0.9113091158866883,
-        "faithfulness": 0.67,
+        "faithfulness": 0.93,
         "relevance": 0.93,
         "completeness": 0.8155555555555556,
-        "overall": 0.8365038458771176
+        "overall": 0.9015038458771176
       },
       "num_sources": 5,
-      "top_source_score": 0.8898323178291321
+      "top_source_score": 0.8898323178291321,
+      "is_greeting": false,
+      "is_intro": false
+    },
+    {
+      "question": "What is GitLab's mission?",
+      "answer": "GitLab's mission is to enable everyone to contribute to and co-create the software that powers our world. This mission reflects the belief that all digital products\u2014ranging from legal documents and movie scripts to websites and chip designs\u2014should be open to contributions. GitLab aims to empower individuals by providing a platform where everyone can participate in the creation and development of software and other digital products.\n\nIn summary, GitLab\u2019s mission focuses on inclusivity and collaboration, ensuring that contribution and co-creation are accessible to all, thereby fostering a more open and participatory digital environment.",
+      "metrics": {
+        "retrieval_score": 0.9113091158866883,
+        "faithfulness": 0.8375,
+        "relevance": 0.88,
+        "completeness": 0.7555555555555555,
+        "overall": 0.8538788458771176
+      },
+      "num_sources": 5,
+      "top_source_score": 0.8898323178291321,
+      "is_greeting": false,
+      "is_intro": false
     },
     {
       "question": "What is GitLab's purpose and how does it help people?",
-      "answer": "GitLab's purpose is to empower everyone through knowledge sharing, job access, and its software platform. Specifically, GitLab aims to help people increase their lifetime earnings by providing access to opportunities and offering a comprehensive DevSecOps platform. This purpose sits at the intersection of addressing both individual progress\u2014through training and access to opportunities\u2014and organizational progress\u2014by enabling faster iteration with the DevSecOps platform.\n\nGitLab helps people by:\n\n1. **Knowledge Sharing:** Facilitating collaboration and contribution from a wide community, allowing individuals to learn, share expertise, and grow their skills.\n\n2. **Job Access:** Creating pathways for individuals to access job opportunities, thereby supporting their career advancement and economic growth.\n\n3. **Software Platform:** Providing a robust DevSecOps platform that organizations use to accelerate development cycles, which in turn creates more opportunities for contributors and users to engage with cutting-edge technology.\n\nAdditionally, GitLab operates with an open and inclusive culture where everyone can contribute, supporting diversity and inclusion programs to ensure people from all backgrounds can thrive. The company runs its operations on its own product, making everything read-write by default, which encourages transparency and collaboration.\n\nIn summary, GitLab's purpose is centered on empowering individuals and organizations by combining knowledge sharing, access to opportunities, and a powerful software platform to foster progress and increase lifetime earnings.",
+      "answer": "GitLab's purpose is to empower everyone through knowledge sharing, job access, and its software platform. Specifically, GitLab aims to help people increase their lifetime earnings by providing access to opportunities and offering a comprehensive DevSecOps platform. This purpose sits at the intersection of addressing both individual progress\u2014through training and access to opportunities\u2014and organizational progress\u2014by enabling faster iteration with the DevSecOps platform.\n\nGitLab helps people by:\n\n1. **Knowledge Sharing:** Facilitating collaboration and open contributions across a wide range of digital products, which supports learning and skill development.\n\n2. **Job Access:** Creating pathways for individuals to access job opportunities, thereby enhancing their career growth and earning potential.\n\n3. **Software Platform:** Providing a robust DevSecOps platform that organizations use to improve their software development processes, which in turn creates more opportunities for individuals to contribute and grow professionally.\n\nAdditionally, GitLab operates with a philosophy that everyone can contribute, supporting a diverse and inclusive environment where people from all backgrounds can thrive. The company runs its operations transparently on its own product, making everything read-write by default, which encourages open collaboration and contribution.\n\nIn summary, GitLab's purpose is centered on empowering individuals and organizations by combining knowledge sharing, access to opportunities, and a powerful software platform to drive progress and increase lifetime earnings.",
       "metrics": {
         "retrieval_score": 0.9031431841850281,
-        "faithfulness": 0.8208333333333333,
+        "faithfulness": 0.875,
         "relevance": 0.95,
         "completeness": 0.95,
-        "overall": 0.9036512885888417
+        "overall": 0.9171929552555085
       },
       "num_sources": 5,
-      "top_source_score": 0.8911690711975098
+      "top_source_score": 0.8911690711975098,
+      "is_greeting": false,
+      "is_intro": false
     },
     {
       "question": "How does GitLab support training and knowledge sharing?",
-      "answer": "GitLab supports training and knowledge sharing through a variety of structured programs, tools, and initiatives designed to facilitate accessible, remote-friendly learning and skill development for its team members. The key ways GitLab supports these efforts include:\n\n1. **Product Training and Certifications**  \n   GitLab offers in-depth product training through resources available on GitLab University, including \"Get Started with GitLab\" materials and various certifications. These certifications are freely accessible to GitLab team members, helping them build expertise in GitLab products. The Talent Development team does not create product training content but directs queries to the digital success team for support (e.g., via the #digital-success Slack channel).\n\n2. **Learning Management System (Level Up)**  \n   GitLab uses a centralized learning management software called Level Up, which facilitates and centralizes the learning experience. Level Up supports:  \n   - Access to asynchronous, self-paced learning opportunities, making training remote-friendly and flexible.  \n   - Integration of third-party content from providers like Masterclass and Hone.  \n   - Enhanced management tools for assigning training and making personalized recommendations.  \n   - Advanced user-generated content capabilities, allowing team members to create and share learning materials.  \n   - Seamless integration with GitLab\u2019s talent management infrastructure, ensuring that skills development is tracked and reflected in performance data.  \n   - A skills library linked to GitLab\u2019s job architecture to align learning with career paths.\n\n3. **Self-Paced External Trainings and Career Development**  \n   GitLab provides access to role-specific external training courses and learning materials from industry-leading providers. Additionally, resources and guidance are available to support career development and mobility, encouraging lifelong growth tailored to individual goals.\n\n4. **Knowledge Sharing Working Groups**  \n   GitLab has working groups focused on knowledge sharing, such as the Upstream Diversity group, which designs programs to leverage GitLab\u2019s technical talent to teach skills like programming, networking, security, remote working, and management. These programs often partner with existing initiatives that have established curricula and student bases, particularly targeting underrepresented groups.\n\n5. **Internal Gigs and Side Projects**  \n   To provide hands-on learning opportunities, GitLab encourages participation in internal gigs and side projects. These practical experiences complement formal training and help team members apply and deepen their skills.\n\n6. **Process for Creating and Curating Learning Materials**  \n   GitLab has a defined process for team members who create or curate training materials, including DIB (Diversity, Inclusion, and Belonging) and L&D teams, managers, departments, and Developer Relations. When new training is developed, an issue is opened early in the process to allow for guidance and collaboration, ensuring quality and alignment with organizational goals.\n\nIn summary, GitLab supports training and knowledge sharing through a comprehensive ecosystem of formal training programs, a robust learning platform, collaborative knowledge-sharing initiatives, practical learning opportunities, and structured content creation processes\u2014all designed to foster continuous learning and skill development in a remote-friendly environment.",
+      "answer": "GitLab supports training and knowledge sharing through a variety of structured programs, tools, and initiatives designed to facilitate accessible, remote-friendly learning and skill development for its team members. The key ways GitLab supports these efforts include:\n\n1. **Product Training and Certifications**  \n   GitLab offers in-depth product training through resources available on GitLab University, including \"Get Started with GitLab\" materials and various certifications that are freely accessible to GitLab team members. These resources help team members gain comprehensive knowledge of GitLab products. For any product training queries or requests, the digital success team is available via the #digital-success Slack channel. The Talent Development team does not create product training content but supports access to these resources.\n\n2. **Learning Management System (Level Up)**  \n   GitLab uses a centralized learning management software called Level Up, which facilitates and streamlines the learning experience. Level Up supports:  \n   - Access to asynchronous, self-paced learning opportunities, enabling remote-friendly development.  \n   - Integration of third-party content from providers like Masterclass and Hone.  \n   - Enhanced management tools for assigning training and making personalized recommendations.  \n   - Advanced user-generated content capabilities, allowing team members to create and share learning materials.  \n   - Seamless integration with GitLab\u2019s talent management infrastructure, ensuring that skills development is tracked and reflected in performance data.  \n   - A skills library linked to GitLab\u2019s job architecture to align learning with career paths.\n\n3. **Self-Paced External Trainings and Career Development**  \n   GitLab provides access to role-specific training courses and learning materials from industry-leading external providers, supporting lifelong growth tailored to individual team members\u2019 goals. This includes resources and guidance for career development and mobility within the company.\n\n4. **Knowledge Sharing Working Groups**  \n   GitLab has working groups focused on knowledge sharing, such as the Upstream Diversity group, which designs programs to leverage GitLab\u2019s internal technical talent to teach skills like programming, networking, security, remote working, and management. These programs often partner with existing initiatives that have established curricula and student bases, particularly targeting underrepresented groups.\n\n5. **Internal Gigs and Side Projects**  \n   To provide hands-on learning opportunities, GitLab encourages participation in internal gigs and side projects. These practical experiences complement formal training and help team members apply and deepen their skills in real-world contexts.\n\n6. **Process for Creating and Curating Learning Materials**  \n   GitLab has a defined process for team members who create or curate training materials, including those from Diversity, Inclusion, and Belonging (DIB) and Learning & Development (L&D) teams, managers, departments, and Developer Relations. When new training content is developed, an issue is opened early in the process to allow for guidance and collaboration, ensuring quality and alignment with company goals.\n\nIn summary, GitLab supports training and knowledge sharing through a comprehensive ecosystem of product training resources, a robust learning management platform, external and internal learning opportunities, targeted knowledge-sharing programs, and a collaborative content creation process. This multi-faceted approach ensures that team members have access to the skills and knowledge they need to grow and succeed in a remote-friendly environment.",
       "metrics": {
         "retrieval_score": 0.8879219899177551,
         "faithfulness": 0.9482142857142859,
-        "relevance": 0.95,
+        "relevance": 0.7649999999999999,
         "completeness": 0.87,
-        "overall": 0.914930168403898
+        "overall": 0.868680168403898
       },
       "num_sources": 5,
-      "top_source_score": 0.8712074756622314
+      "top_source_score": 0.8712074756622314,
+      "is_greeting": false,
+      "is_intro": false
     },
     {
       "question": "How do I request time off?",
-      "answer": "To request time off, please follow these steps:\n\n1. **Notify Your Manager**  \n   Discuss and coordinate your planned time off with your manager in alignment with the Flexible PTO policy. Provide as much notice as possible, ideally at least twice the number of days you plan to be off (for example, give 6 business days' notice if you plan to take 3 days off).\n\n2. **Enter Your Time Off in Workday**  \n   - Open the Workday app or use the Workday Slack integration.  \n   - Select the day(s) you need to take off.  \n   - Click on \u201cTime-Off\u201d and then choose the appropriate time-off type (e.g., \u201cVolunteer\u201d for volunteer time, or \u201cPaid Time Off\u201d for PTO).  \n   - Optionally, add a comment if needed.  \n   - Click \u201cSubmit\u201d to finalize your request.\n\n3. **Special Notes for Leave Types**  \n   - For Paid Time Off (PTO), submit your dates in Workday by selecting \u201cPaid Time Off\u201d and notify the Absence Management team.  \n   - For parental leave, communicate with your manager 2-3 months in advance to allow for workload planning.  \n   - If unsure about how to classify your time off (e.g., Out Sick, Bereavement, Emergency Leave), contact the Absence Management team for guidance.\n\n4. **Update Your Calendar and Slack Status**  \n   After entering your time off in Workday, update your Slack and Google Calendar to reflect your absence. If you have the Time Off by Deel integration, this update should happen automatically. Note that the Out of Office (OOO) event will not automatically decline your meetings, so you may need to manage those separately.\n\nBy following these steps, you ensure your time off is properly documented and communicated for smooth workflow management.",
+      "answer": "To request time off, please follow these steps:\n\n1. **Notify Your Manager**  \n   Discuss and coordinate your planned time off with your manager in alignment with the Flexible PTO policy. Provide as much notice as possible, ideally at least twice the number of days you plan to be off (for example, give 6 business days' notice if you plan to take 3 days off).\n\n2. **Enter Your Time Off in Workday**  \n   - Open the Workday app or use the Workday Slack integration.  \n   - Select the day(s) you need to take off.  \n   - Click on \u201cTime-Off\u201d and then choose the appropriate type of time off (e.g., \u201cVolunteer\u201d for volunteer time, or \u201cPaid Time Off\u201d for PTO).  \n   - Optionally, add a comment to provide additional details.  \n   - Click \u201cSubmit\u201d to finalize your request.\n\n3. **Special Notes for Leave Types**  \n   - For Paid Time Off (PTO), submit your dates in Workday by selecting \u201cPaid Time Off\u201d and notify the Absence Management team.  \n   - If you are unsure how to classify your time off (such as Out Sick, Bereavement, or Emergency Leave), contact the Absence Management team for guidance.\n\n4. **Update Your Calendar and Slack Status**  \n   After entering your time off in Workday, update your Slack status and Google Calendar to reflect your absence. If you have the Time Off by Deel integration, this update should happen automatically. Note that the Out of Office (OOO) event will not automatically decline your meetings, so you may need to manage those separately.\n\n5. **For Extended Leaves (e.g., Parental Leave)**  \n   When planning extended leaves, such as parental leave, it is recommended to communicate with your manager 2-3 months in advance to allow for workload planning.\n\nBy following these steps, you ensure your time off is properly documented and communicated within the company.",
       "metrics": {
         "retrieval_score": 0.8975655921300252,
-        "faithfulness": 0.925,
+        "faithfulness": 0.9065217391304349,
         "relevance": 0.95,
         "completeness": 0.95,
-        "overall": 0.9280196776390075
+        "overall": 0.9234001124216162
       },
       "num_sources": 3,
-      "top_source_score": 0.8730016946792603
+      "top_source_score": 0.8730016946792603,
+      "is_greeting": false,
+      "is_intro": false
     },
     {
       "question": "What is GitLab's customer acceptance policy?",
-      "answer": "GitLab's customer acceptance policy is grounded in strict adherence to applicable laws, including trade compliance laws, in all countries where GitLab operates. The company welcomes customers who comply with these legal restrictions. However, GitLab reserves the right to decline working with certain organizations on a case-by-case basis. Reasons for choosing not to engage with particular entities include, but are not limited to:\n\n- Engagement in illegal or unlawful behavior.\n- Making derogatory statements or threats toward anyone in the GitLab community.\n\nThis approach ensures that GitLab maintains a lawful and respectful environment for its community and business operations. \n\nIn summary, GitLab\u2019s customer acceptance policy emphasizes legal compliance and community respect, with discretionary refusal of service to entities that violate these principles.",
+      "answer": "GitLab's customer acceptance policy is grounded in strict adherence to applicable laws, including trade compliance laws, in all countries where the company operates. GitLab welcomes customers who comply with these legal restrictions. However, the company reserves the right to decline working with certain organizations on a case-by-case basis. Reasons for choosing not to engage with particular entities include, but are not limited to:\n\n- Engagement in illegal or unlawful behavior.\n- Making derogatory statements or threats toward anyone in the GitLab community.\n\nThis policy reflects GitLab's commitment to maintaining a lawful and respectful community environment. It is also important to note that GitLab's acceptance criteria are applied consistently with their Code of Business Conduct and Ethics.\n\nAdditionally, in cases where GitLab deems it necessary, the company may retrieve messages from archives and servers without prior notice as part of an investigation, which is conducted with the approval of the Security, People Business Partners, and Legal Departments. This underscores GitLab's proactive approach to enforcing its policies and maintaining compliance.\n\nBased on the available information, GitLab's customer acceptance policy emphasizes legal compliance, community respect, and the company's discretion to refuse service to entities that violate these principles.",
       "metrics": {
         "retrieval_score": 0.886464877128601,
-        "faithfulness": 0.8857142857142856,
+        "faithfulness": 0.8699999999999999,
         "relevance": 0.93,
-        "completeness": 0.8655555555555556,
-        "overall": 0.8929791456782629
+        "completeness": 0.95,
+        "overall": 0.9059394631385803
       },
       "num_sources": 4,
-      "top_source_score": 0.8681831359863281
+      "top_source_score": 0.8681831359863281,
+      "is_greeting": false,
+      "is_intro": false
     },
     {
       "question": "What is GitLab's approach to remote work and all-remote culture?",
-      "answer": "GitLab\u2019s approach to remote work and its all-remote culture is comprehensive, intentional, and designed to empower both the organization and its employees to thrive without a physical office presence. Key aspects of this approach include:\n\n1. **100% All-Remote Model**  \n   GitLab operates as one of the world\u2019s largest fully remote companies, with no company-owned offices anywhere globally. The company has over 1,500 team members spread across more than 65 countries. This all-remote setup is foundational to GitLab\u2019s culture and operations, emphasizing that remote work is not a temporary or secondary mode but the primary way of working (Source 4).\n\n2. **Embracing a Unique Remote Work Mindset**  \n   GitLab encourages employees to drop traditional workplace norms tied to colocated offices and instead adopt a self-service and empowering mindset. Employees are invited to embrace new values that liberate them from prior workplace baggage and enable them to operate differently and effectively in a remote environment (Source 3).\n\n3. **Inclusivity and Accessibility**  \n   The all-remote model is designed to create an equitable workplace where career advancement is not hindered by location. This approach benefits caregivers, individuals with physical disabilities, and those who must relocate frequently for personal reasons, ensuring they are not disadvantaged by the inability to commute regularly to an office (Source 2).\n\n4. **Tailored Work Environments**  \n   GitLab\u2019s approach to spending company money allows team members to create personalized work environments that best suit their individual needs, further supporting productivity and comfort in a remote setting (Source 2).\n\n5. **Career Growth Without Location Constraints**  \n   GitLab\u2019s all-remote culture ensures that employees can pursue career advancement opportunities regardless of their physical location. Even executives at GitLab work fully remotely, reinforcing that remote work does not limit professional growth (Source 2).\n\n6. **Guidance and Resources**  \n   GitLab provides extensive resources, guides, and best practices to support remote work. This includes advice on conducting effective all-remote meetings, building and reinforcing a sustainable remote work culture, and sharing insights from experienced remote work leaders within the company (Sources 1, 4, 5).\n\n7. **Hiring Philosophy**  \n   GitLab envisions a world where hiring is based on business needs and talent rather than geographic location. This philosophy supports a diverse and distributed workforce, enabling the company to attract driven individuals globally (Source 5).\n\nIn summary, GitLab\u2019s approach to remote work is a deliberate, well-supported, and inclusive all-remote culture that empowers employees to work effectively from anywhere, fosters career growth without geographic limitations, and provides the tools and mindset necessary to succeed in a fully distributed environment.",
+      "answer": "GitLab's approach to remote work and its all-remote culture is comprehensive, intentional, and designed to empower employees while fostering a sustainable and inclusive work environment. Key aspects include:\n\n1. **100% All-Remote Model**  \n   GitLab operates as one of the world\u2019s largest fully remote companies, with no company-owned offices anywhere globally and over 1,500 team members spread across more than 65 countries. This model is foundational to their culture and operations, emphasizing that all work is done remotely without a physical office hub (Source 4).\n\n2. **Unique Remote Work Methodologies**  \n   GitLab encourages employees to adopt a self-service mindset and to let go of traditional, colocated workplace norms. The company promotes a liberating and empowering set of values that allow team members to operate differently from conventional office-based companies. This mindset shift is critical for thriving in their remote environment (Source 3).\n\n3. **Inclusivity and Accessibility**  \n   The all-remote setup ensures that career advancement is not hindered by location, as even executives work fully remotely. This approach creates an equitable workplace for caregivers, individuals with physical disabilities, and those who cannot commute regularly to an office. It also supports employees who need to relocate frequently for family or personal reasons, allowing them to maintain their careers without disruption (Source 2).\n\n4. **Tailored Work Environments**  \n   GitLab\u2019s approach to spending company money empowers team members to create personalized work environments that best suit their individual needs. This flexibility supports productivity and well-being by acknowledging that each employee\u2019s ideal workspace may differ (Source 2).\n\n5. **Building and Reinforcing Remote Culture**  \n   GitLab provides extensive guidance on conducting all-remote meetings and building a sustainable remote work culture. They share their expertise transparently, drawing on years of experience in various company structures, including colocated, hybrid, and all-remote setups. This helps reinforce best practices and continuous improvement in remote work (Sources 1 and 4).\n\n6. **Hiring Based on Talent, Not Location**  \n   GitLab envisions a world where employment opportunities are based on business needs and individual talent rather than geographic location. This philosophy broadens access to roles for a diverse and global talent pool (Source 5).\n\n7. **Comprehensive Resources and Community Leadership**  \n   GitLab offers resources to learn more about their remote work approach and highlights other companies inspired by their culture. This positions GitLab as a leader and advocate in the remote work movement (Source 5).\n\nIn summary, GitLab\u2019s all-remote culture is built on a foundation of inclusivity, empowerment, flexibility, and a deliberate departure from traditional office norms. It supports a global, diverse workforce by enabling employees to work from anywhere while maintaining career growth, personalized work environments, and a strong, sustainable remote culture.",
       "metrics": {
         "retrieval_score": 0.9299602091312409,
-        "faithfulness": 0.8804347826086957,
+        "faithfulness": 0.8074074074074074,
         "relevance": 0.95,
         "completeness": 0.7366666666666666,
-        "overall": 0.8839300917248795
+        "overall": 0.8656732479245575
       },
       "num_sources": 5,
-      "top_source_score": 0.9078816175460815
+      "top_source_score": 0.9078816175460815,
+      "is_greeting": false,
+      "is_intro": false
     },
     {
       "question": "How does GitLab enable everyone to contribute to the application?",
-      "answer": "GitLab enables everyone to contribute to the application through several key approaches:\n\n1. **Open Contribution Model**  \n   GitLab actively welcomes contributors from all backgrounds to participate in co-creating the application. This open invitation allows users to become contributors, which significantly increases the rate of innovation and benefits customers and users globally. The company fosters an open dialogue with customers, partners, and the community to better understand their needs and build solutions that serve a wide audience (Source 1).\n\n2. **Read-Write by Default Operations**  \n   GitLab runs its operations on its own product, making everything \"read-write by default.\" This means that all parts of the company and community have transparent access and the ability to contribute directly to projects. This operational model supports inclusivity and empowers contributors at all levels to engage with the product and its development (Source 2).\n\n3. **Skill Development and Accessibility**  \n   From the very first week, regardless of role, GitLab equips team members with the technical skills needed to access, question, and contribute to projects beyond their immediate job descriptions. This approach lowers barriers to contribution and encourages collaboration across diverse roles, not just developers. The culture of learning from and supporting each other further enhances this environment (Source 4).\n\n4. **Global and Diverse Community**  \n   GitLab operates worldwide and embraces diversity, equity, and inclusion (DIB) programs to ensure people from all backgrounds can contribute and thrive. This inclusive culture broadens the pool of contributors and enriches the development process with varied perspectives (Source 2).\n\n5. **Supporting Open Source Projects**  \n   By providing the top tier of GitLab for free to open source projects, GitLab enables these projects to be more efficient, secure, and productive. This contribution at scale helps optimize the global DevOps lifecycle and encourages a broader community to engage with and contribute to GitLab\u2019s ecosystem (Source 3).\n\n6. **Collaboration Tools for All Roles**  \n   GitLab\u2019s collaboration tools are designed to help people work better together regardless of location or role. This inclusive design means that even non-developers can learn to collaborate effectively within the GitLab environment, further enabling contributions from a wide range of users (Source 5).\n\nIn summary, GitLab\u2019s combination of an open contribution philosophy, transparent and accessible operations, skill development, inclusive culture, support for open source, and collaborative tools creates an environment where everyone can contribute meaningfully to the application.",
+      "answer": "GitLab enables everyone to contribute to the application through several key approaches:\n\n1. **Open Contribution Model**  \n   GitLab actively welcomes contributors from all backgrounds to participate in co-creating the application. This open invitation allows users to become contributors, which significantly increases the rate of innovation and benefits customers and users worldwide. The company fosters an open dialogue with customers, partners, and the community to better understand their needs and build solutions collaboratively (Source 1).\n\n2. **Read-Write by Default Operations**  \n   GitLab runs its operations on its own product, making everything \"read-write by default.\" This means that all team members, regardless of their role, have access to contribute directly to projects. This operational transparency and accessibility empower everyone to participate actively in development and collaboration (Source 2).\n\n3. **Inclusive Culture and Skill Development**  \n   From the very first week, GitLab ensures that employees, no matter their role, gain the technical skills needed to access, question, and contribute to projects beyond their job descriptions. This inclusive culture encourages learning, collaboration, and mutual support, enabling a broad range of contributors to engage with the application effectively (Source 4).\n\n4. **Global and Diverse Participation**  \n   GitLab operates globally and has built Diversity, Inclusion, and Belonging (DIB) programs into all parts of the company. This commitment ensures that people from diverse backgrounds can thrive and contribute meaningfully to the platform\u2019s success (Source 2).\n\n5. **Supporting Open Source Projects**  \n   By providing the top tier of GitLab freely to open source projects, GitLab enables these projects to be more efficient, secure, and productive. This approach extends the opportunity to contribute at scale, benefiting the broader community and aligning with GitLab\u2019s vision (Source 3).\n\n6. **Collaboration Across Roles and Locations**  \n   GitLab\u2019s tool is designed to facilitate collaboration among people in different roles and across multiple time zones. This broad usability means that contributors are not limited to developers but include a wide range of users who can work together effectively on the platform (Source 5).\n\nIn summary, GitLab\u2019s combination of an open contribution model, operational transparency, inclusive culture, global diversity, support for open source, and collaborative tools enables everyone to contribute to the application meaningfully and effectively.",
       "metrics": {
         "retrieval_score": 0.9073959183692931,
-        "faithfulness": 0.868181818181818,
+        "faithfulness": 0.9380952380952381,
         "relevance": 0.7649999999999999,
         "completeness": 0.95,
-        "overall": 0.8705142300562424
+        "overall": 0.8879925850345974
       },
       "num_sources": 5,
-      "top_source_score": 0.908563494682312
+      "top_source_score": 0.908563494682312,
+      "is_greeting": false,
+      "is_intro": false
     },
     {
       "question": "What is the weather like today?",
-      "answer": "I don't have enough information in the knowledge base to answer this question.",
+      "answer": "I don't have enough information in the knowledge base to answer this question. Could you try rephrasing or ask something else about GitLab?",
       "metrics": {
         "retrieval_score": 0.0,
         "faithfulness": 1.0,
@@ -123,11 +215,13 @@
         "overall": 0.75
       },
       "num_sources": 0,
-      "top_source_score": 0.0
+      "top_source_score": 0.0,
+      "is_greeting": false,
+      "is_intro": false
     },
     {
       "question": "Who won the Super Bowl in 2024?",
-      "answer": "I don't have enough information in the knowledge base to answer this question.",
+      "answer": "I don't have enough information in the knowledge base to answer this question. Could you try rephrasing or ask something else about GitLab?",
       "metrics": {
         "retrieval_score": 0.0,
         "faithfulness": 1.0,
@@ -136,7 +230,9 @@
         "overall": 0.75
       },
       "num_sources": 0,
-      "top_source_score": 0.0
+      "top_source_score": 0.0,
+      "is_greeting": false,
+      "is_intro": false
     }
   ]
 }

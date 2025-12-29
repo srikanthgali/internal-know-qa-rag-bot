@@ -258,6 +258,27 @@ def main():
     st.session_state.max_sources = config.get("max_sources", 5)
     st.session_state.show_debug = config.get("show_debug", False)
 
+    # ADDED: Show sample prompts if no messages
+    if len(st.session_state.messages) == 0:
+        st.markdown("### 💬 Try asking:")
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            if st.button("👋 Hello!", use_container_width=True):
+                st.session_state.sample_prompt = "Hi! What can you help me with?"
+                st.rerun()
+
+        with col2:
+            if st.button("🎯 GitLab's Mission", use_container_width=True):
+                st.session_state.sample_prompt = "What is GitLab's mission?"
+                st.rerun()
+
+        with col3:
+            if st.button("🏖️ Time Off", use_container_width=True):
+                st.session_state.sample_prompt = "How do I request time off?"
+                st.rerun()
+
     # Render chat interface
     render_chat(config)
 

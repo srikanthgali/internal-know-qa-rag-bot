@@ -1,6 +1,87 @@
 {
     "test_questions": [
         {
+            "category": "greeting",
+            "question": "Hi",
+            "expected_keywords": [
+                "hello",
+                "assistant",
+                "help",
+                "gitlab"
+            ],
+            "expected_topics": [
+                "greeting",
+                "introduction",
+                "capabilities"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "category": "greeting",
+            "question": "Hello! What can you help me with?",
+            "expected_keywords": [
+                "assist",
+                "help",
+                "gitlab",
+                "policies"
+            ],
+            "expected_topics": [
+                "greeting",
+                "capabilities",
+                "usage"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "category": "introduction",
+            "question": "Who are you?",
+            "expected_keywords": [
+                "assistant",
+                "gitlab",
+                "knowledge",
+                "help"
+            ],
+            "expected_topics": [
+                "introduction",
+                "capabilities",
+                "purpose"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "category": "introduction",
+            "question": "What can you do?",
+            "expected_keywords": [
+                "answer",
+                "questions",
+                "policies",
+                "gitlab"
+            ],
+            "expected_topics": [
+                "capabilities",
+                "features",
+                "usage"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "category": "factual",
+            "question": "What is GitLab's mission?",
+            "expected_keywords": [
+                "mission",
+                "contribute",
+                "co-create",
+                "software",
+                "everyone"
+            ],
+            "expected_topics": [
+                "mission",
+                "company goals",
+                "collaboration"
+            ],
+            "difficulty": "easy"
+        },
+        {
             "category": "factual",
             "question": "What is GitLab's mission?",
             "expected_keywords": [

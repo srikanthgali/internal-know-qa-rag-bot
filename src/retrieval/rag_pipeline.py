@@ -23,7 +23,87 @@ class RAGPipeline:
         self.max_tokens = settings.openai.max_tokens
         self.edge_case_min_score = settings.retrieval.edge_case_min_score
 
+        # Greeting patterns
+        self.greeting_patterns = [
+            "hi",
+            "hello",
+            "hey",
+            "greetings",
+            "good morning",
+            "good afternoon",
+            "good evening",
+            "howdy",
+            "what's up",
+            "whats up",
+            "sup",
+            "yo",
+        ]
+
+        self.intro_patterns = [
+            "who are you",
+            "what are you",
+            "what can you do",
+            "what do you do",
+            "tell me about yourself",
+            "introduce yourself",
+            "your capabilities",
+            "help me",
+            "what is this",
+            "how does this work",
+        ]
+
         logger.info("Initialized RAG Pipeline")
+
+    def _is_greeting(self, question: str) -> bool:
+        """Check if question is a greeting."""
+        question_lower = question.lower().strip()
+
+        # Exact match or starts with greeting
+        return question_lower in self.greeting_patterns or any(
+            question_lower.startswith(g) for g in self.greeting_patterns
+        )
+
+    def _is_intro_request(self, question: str) -> bool:
+        """Check if question is asking for introduction/help."""
+        question_lower = question.lower().strip()
+        return any(pattern in question_lower for pattern in self.intro_patterns)
+
+    def _generate_greeting_response(self) -> str:
+        """Generate friendly greeting response."""
+        return """Hello! 👋 I'm the GitLab Knowledge Q&A Assistant.
+
+                I can help you find information about:
+                • GitLab's mission, values, and culture
+                • Company policies and procedures
+                • Time off, leave types, and benefits
+                • Remote work practices
+                • Training and professional development
+                • And much more from the GitLab handbook!
+
+                What would you like to know about GitLab today?"""
+
+    def _generate_intro_response(self) -> str:
+        """Generate introduction/capabilities response."""
+        return """I'm an AI assistant specialized in GitLab's internal knowledge base! 🦊
+
+                **What I can do:**
+                • Answer questions about GitLab policies, procedures, and culture
+                • Explain company values and operating principles
+                • Guide you through HR processes (PTO, benefits, etc.)
+                • Share information about remote work best practices
+                • Provide training and development resources
+
+                **How to use me:**
+                • Ask specific questions like "How do I request time off?"
+                • Inquire about policies like "What is GitLab's mission?"
+                • Seek guidance on processes like "How does code review work?"
+
+                **What I can't do:**
+                • Answer questions outside GitLab's knowledge base
+                • Provide personal advice or opinions
+                • Access external information or real-time data
+
+                Try asking me something about GitLab! For example: "What is GitLab's approach to remote work?" """
 
     def query(
         self,
@@ -45,6 +125,28 @@ class RAGPipeline:
         logger.info(f"Processing query: {question}")
 
         try:
+            # ADDED: Handle greetings
+            if self._is_greeting(question):
+                logger.info("Detected greeting, returning friendly response")
+                return {
+                    "answer": self._generate_greeting_response(),
+                    "sources": [],
+                    "retrieved_docs": [],
+                    "model": self.model,
+                    "is_greeting": True,
+                }
+
+            # Handle introduction requests
+            if self._is_intro_request(question):
+                logger.info("Detected intro request, returning capabilities")
+                return {
+                    "answer": self._generate_intro_response(),
+                    "sources": [],
+                    "retrieved_docs": [],
+                    "model": self.model,
+                    "is_intro": True,
+                }
+
             # Step 1: Retrieve relevant documents
             retrieved_docs = self.retriever.retrieve(question, top_k=top_k)
 
@@ -52,21 +154,21 @@ class RAGPipeline:
             if not retrieved_docs:
                 logger.warning("No relevant documents found")
                 return {
-                    "answer": "I don't have enough information in the knowledge base to answer this question.",
-                    "sources": [],  # ✅ Empty sources for out-of-scope
+                    "answer": "I don't have enough information in the knowledge base to answer this question. Could you try rephrasing or ask something else about GitLab?",
+                    "sources": [],
                     "retrieved_docs": [],
                     "model": self.model,
                 }
 
             # Additional check: if best score is below threshold
             best_score = max(doc.get("score", 0.0) for doc in retrieved_docs)
-            if best_score < self.edge_case_min_score:  # Stricter threshold
+            if best_score < self.edge_case_min_score:
                 logger.warning(
                     f"Retrieved docs have low relevance (best: {best_score:.2%})"
                 )
                 return {
-                    "answer": "I don't have enough information in the knowledge base to answer this question.",
-                    "sources": [],  # ✅ Empty sources
+                    "answer": "I don't have enough information in the knowledge base to answer this question. Could you try rephrasing or ask something else about GitLab?",
+                    "sources": [],
                     "retrieved_docs": [],
                     "model": self.model,
                 }

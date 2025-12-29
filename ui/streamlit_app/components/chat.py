@@ -14,7 +14,7 @@ def display_message(
     with st.chat_message(role):
         st.markdown(content)
 
-        # Display sources if available
+        # Display sources if available (not for greetings)
         if sources and role == "assistant":
             if len(sources) > 0:
                 with st.expander(f"📚 Sources ({len(sources)})"):
@@ -29,7 +29,14 @@ def display_message(
                         # Show debug info if enabled
                         if show_debug:
                             st.json(source.get("metadata", {}))
-            else:
+            elif content.startswith("I don't have enough information"):
+                # Out-of-scope query
+                st.info("ℹ️ No relevant sources found in the knowledge base.")
+            # ADDED: Don't show "no sources" for greetings
+            elif not any(
+                greeting in content.lower()
+                for greeting in ["hello", "hi", "i'm", "i can help"]
+            ):
                 st.info("ℹ️ No relevant sources found in the knowledge base.")
 
 
