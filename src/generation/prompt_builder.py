@@ -6,6 +6,7 @@ from src.config.prompts import (
     format_chat_history,
 )
 from src.utils.logger import get_logger
+from src.config.settings import settings
 
 logger = get_logger(__name__)
 
@@ -13,14 +14,14 @@ logger = get_logger(__name__)
 class PromptBuilder:
     """Builds prompts for LLM from retrieved context."""
 
-    def __init__(self, max_context_length: int = 3000):
+    def __init__(self):
         """
         Initialize prompt builder.
 
         Args:
             max_context_length: Maximum length of context in characters
         """
-        self.max_context_length = max_context_length
+        self.max_context_length = settings.generation.max_context_length
         logger.info("Initialized PromptBuilder")
 
     def build_prompt(
@@ -75,3 +76,37 @@ class PromptBuilder:
             Formatted prompt
         """
         return QUERY_PROMPT_TEMPLATE.format(context=context, question=question)
+
+    def _format_context_enhanced(self, retrieved_docs: List[Dict]) -> str:
+        """
+        Enhanced context formatting with better structure.
+
+        Improvements:
+        - Number sources clearly
+        - Include relevance scores
+        - Add metadata
+        - Highlight key information
+        """
+        context_parts = []
+
+        for i, doc in enumerate(retrieved_docs, 1):
+            metadata = doc.get("metadata", {})
+            source = metadata.get("filename", "Unknown")
+            content = doc.get("content", "")
+            score = doc.get("score", 0.0)
+
+            # Clean and structure content
+            content = content.strip()
+
+            # Add structured source block
+            source_block = f"""
+    ===== SOURCE {i} =====
+    File: {source}
+    Relevance: {score:.2%}
+    ---
+    {content}
+    ==================
+    """
+            context_parts.append(source_block)
+
+        return "\n".join(context_parts)

@@ -1,0 +1,141 @@
+{
+    "test_questions": [
+        {
+            "category": "factual",
+            "question": "What is GitLab's mission?",
+            "expected_keywords": [
+                "mission",
+                "contribute",
+                "co-create",
+                "software",
+                "everyone"
+            ],
+            "expected_topics": [
+                "mission",
+                "company goals",
+                "collaboration"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "category": "factual",
+            "question": "What is GitLab's purpose and how does it help people?",
+            "expected_keywords": [
+                "purpose",
+                "lifetime earnings",
+                "opportunities",
+                "DevSecOps",
+                "training"
+            ],
+            "expected_topics": [
+                "purpose",
+                "career development",
+                "platform"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "category": "technical",
+            "question": "How does GitLab support training and knowledge sharing?",
+            "expected_keywords": [
+                "training",
+                "learning",
+                "certifications",
+                "development",
+                "programs"
+            ],
+            "expected_topics": [
+                "education",
+                "knowledge sharing",
+                "professional development"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "category": "procedural",
+            "question": "How do I request time off?",
+            "expected_keywords": [
+                "time off",
+                "PTO",
+                "request",
+                "workday",
+                "manager"
+            ],
+            "expected_topics": [
+                "leave",
+                "procedure",
+                "policy"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "category": "policy",
+            "question": "What is GitLab's customer acceptance policy?",
+            "expected_keywords": [
+                "customer",
+                "acceptance",
+                "legal",
+                "compliance",
+                "policy"
+            ],
+            "expected_topics": [
+                "policy",
+                "ethics",
+                "compliance"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "category": "technical",
+            "question": "What is GitLab's approach to remote work and all-remote culture?",
+            "expected_keywords": [
+                "remote",
+                "all-remote",
+                "distributed",
+                "asynchronous",
+                "flexibility"
+            ],
+            "expected_topics": [
+                "company culture",
+                "remote work",
+                "collaboration"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "category": "factual",
+            "question": "How does GitLab enable everyone to contribute to the application?",
+            "expected_keywords": [
+                "contribute",
+                "open source",
+                "merge request",
+                "community",
+                "collaboration"
+            ],
+            "expected_topics": [
+                "contribution",
+                "open source",
+                "development"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "category": "edge_case",
+            "question": "What is the weather like today?",
+            "expected_keywords": [],
+            "expected_topics": [],
+            "difficulty": "impossible",
+            "note": "Should respond with 'no information available' - CORRECT handling = 1.0 score",
+            "expected_behavior": "no_information_response"
+        },
+        {
+            "category": "edge_case",
+            "question": "Who won the Super Bowl in 2024?",
+            "expected_keywords": [],
+            "expected_topics": [],
+            "difficulty": "impossible",
+            "note": "Should respond with 'no information available'",
+            "expected_behavior": "no_information_response"
+        }
+    ]
+}

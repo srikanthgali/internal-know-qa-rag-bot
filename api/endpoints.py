@@ -100,11 +100,11 @@ async def query_knowledge_base(request: QueryRequest):
         sources = [
             Source(
                 content=doc.get("content", ""),
-                source=doc.get("source", "Unknown"),
-                score=doc.get("score", 0.0),
+                source=doc.get("metadata", {}).get("source", "Unknown"),
+                score=float(doc.get("score", 0.0)),
                 metadata=doc.get("metadata", {}),
             )
-            for doc in result.get("sources", [])
+            for doc in result.get("retrieved_docs", [])
         ]
 
         logger.info(f"Query completed in {query_time:.2f}s with {len(sources)} sources")

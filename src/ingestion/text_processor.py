@@ -2,8 +2,8 @@ import re
 import logging
 from typing import List, Optional
 import unicodedata
+from src.utils.logger import get_logger
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
@@ -17,7 +17,8 @@ class TextProcessor:
         remove_extra_whitespace: bool = True,
         lowercase: bool = False,
         remove_special_chars: bool = False,
-        min_length: int = 10,
+        min_length: int = 50,
+        remove_boilerplate: bool = True,
     ):
         """
         Initialize the text processor.
@@ -36,6 +37,16 @@ class TextProcessor:
         self.lowercase = lowercase
         self.remove_special_chars = remove_special_chars
         self.min_length = min_length
+        self.remove_boilerplate = remove_boilerplate
+
+        self.boilerplate_patterns = [
+            r"©\s*\d{4}",  # Copyright
+            r"All rights reserved",
+            r"Click here",
+            r"Read more",
+            r"Table of contents",
+            r"Page \d+ of \d+",
+        ]
 
     def process(self, text: str) -> str:
         """
@@ -73,6 +84,10 @@ class TextProcessor:
         if self.lowercase:
             text = text.lower()
 
+        # Remove boilerplate
+        if self.remove_boilerplate:
+            text = self._remove_boilerplate(text)
+
         # Final cleanup
         text = text.strip()
 
@@ -103,6 +118,12 @@ class TextProcessor:
             f"Processed {len(texts)} texts, kept {len(processed)} after filtering"
         )
         return processed
+
+    def _remove_boilerplate(self, text: str) -> str:
+        """Remove common boilerplate text."""
+        for pattern in self.boilerplate_patterns:
+            text = re.sub(pattern, "", text, flags=re.IGNORECASE)
+        return text
 
     def _normalize_unicode(self, text: str) -> str:
         """Normalize unicode characters to ASCII equivalents where possible."""

@@ -11,13 +11,13 @@ openai:
   model: "gpt-4.1-mini"
   embedding_model: "text-embedding-ada-002"
   temperature: 0.1
-  max_tokens: 1000
+  max_tokens: 2000
   api_key_env: "OPENAI_API_KEY"
 
 # Document Processing
 document_processing:
-  chunk_size: 512
-  chunk_overlap: 50
+  chunk_size: 600
+  chunk_overlap: 100
   separators: ["\n\n", "\n", ". ", " ", ""]
   supported_formats: [".pdf", ".txt", ".docx", ".md"]
 
@@ -31,14 +31,37 @@ vector_store:
 # Retrieval Settings
 retrieval:
   top_k: 5
-  similarity_threshold: 0.7
+  similarity_threshold: 0.70
   rerank: false
+
+# Edge case detection
+edge_case_detection:
+  min_score_threshold: 0.78  # If best doc is below this, return "no info"
+  enabled: true
 
 # Generation Settings
 generation:
-  system_prompt: "You are a helpful AI assistant for internal knowledge base queries."
+  system_prompt: |
+    You are a helpful AI assistant that answers questions based on internal company documentation.
+
+    Your role is to:
+    1. Provide accurate, detailed answers based ONLY on the provided context
+    2. Cite specific sources when answering
+    3. Structure answers with clear sections when covering multiple points
+    4. If the context doesn't contain the answer, respond EXACTLY: "I don't have enough information in the knowledge base to answer this question."
+    5. NEVER use external knowledge or make assumptions
+    6. Be professional and helpful
+
+    Guidelines:
+    - Always base your answers on the provided context
+    - When the question asks "how" - provide step-by-step details
+    - Include relevant source references in your answer
+    - Be conversational but maintain professionalism
+    - Keep answers focused and to the point
+    - If the context has multiple relevant sections, synthesize them
+    - If uncertain about completeness, say "Based on the available information..." and list what's covered"
   include_sources: true
-  max_context_length: 3000
+  max_context_length: 4000
 
 # API Settings
 api:

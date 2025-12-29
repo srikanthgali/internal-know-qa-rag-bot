@@ -37,6 +37,16 @@ class RetrievalConfig:
     top_k: int
     similarity_threshold: float
     rerank: bool
+    edge_case_min_score: float = 0.80
+
+
+@dataclass
+class GenerationConfig:
+    """Generation configuration."""
+
+    system_prompt: str
+    include_sources: bool
+    max_context_length: int
 
 
 @dataclass
@@ -110,6 +120,12 @@ class Settings:
                 "separators": ["\n\n", "\n", ". ", " ", ""],
                 "supported_formats": [".pdf", ".txt", ".docx", ".md"],
             },
+            "retrieval": {
+                "top_k": 5,
+                "similarity_threshold": 0.75,
+                "rerank": False,
+                "edge_case_min_score": 0.80,
+            },
         }
 
     def _validate_config(self):
@@ -178,6 +194,23 @@ class Settings:
             top_k=config.get("top_k", 5),
             similarity_threshold=config.get("similarity_threshold", 0.7),
             rerank=config.get("rerank", False),
+            edge_case_min_score=config.get("edge_case_min_score", 0.80),
+        )
+
+    @property
+    def generation(self) -> GenerationConfig:
+        """Get generation configuration."""
+        if self._config is None:
+            self._config = self._get_default_config()
+
+        config = self._config.get("generation", {})
+        return GenerationConfig(
+            system_prompt=config.get(
+                "system_prompt",
+                "You are a helpful assistant that provides accurate answers based on the provided context.",
+            ),
+            include_sources=config.get("include_sources", True),
+            max_context_length=config.get("max_context_length", 5000),
         )
 
     @property

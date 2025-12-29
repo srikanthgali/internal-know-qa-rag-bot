@@ -1,6 +1,7 @@
 from typing import List, Dict, Optional
 from openai import OpenAI
 
+from src.config.prompts import SYSTEM_PROMPT
 from src.retrieval.retriever import Retriever
 from src.generation.prompt_builder import PromptBuilder
 from src.utils.logger import get_logger
@@ -20,6 +21,7 @@ class RAGPipeline:
         self.model = settings.openai.model
         self.temperature = settings.openai.temperature
         self.max_tokens = settings.openai.max_tokens
+        self.edge_case_min_score = settings.retrieval.edge_case_min_score
 
         logger.info("Initialized RAG Pipeline")
 
@@ -46,12 +48,27 @@ class RAGPipeline:
             # Step 1: Retrieve relevant documents
             retrieved_docs = self.retriever.retrieve(question, top_k=top_k)
 
+            # IMPROVED: Check if retrieval quality is too low
             if not retrieved_docs:
                 logger.warning("No relevant documents found")
                 return {
-                    "answer": "I'm sorry, I couldn't find any relevant information to answer your question.",
-                    "sources": [],
+                    "answer": "I don't have enough information in the knowledge base to answer this question.",
+                    "sources": [],  # ✅ Empty sources for out-of-scope
                     "retrieved_docs": [],
+                    "model": self.model,
+                }
+
+            # Additional check: if best score is below threshold
+            best_score = max(doc.get("score", 0.0) for doc in retrieved_docs)
+            if best_score < self.edge_case_min_score:  # Stricter threshold
+                logger.warning(
+                    f"Retrieved docs have low relevance (best: {best_score:.2%})"
+                )
+                return {
+                    "answer": "I don't have enough information in the knowledge base to answer this question.",
+                    "sources": [],  # ✅ Empty sources
+                    "retrieved_docs": [],
+                    "model": self.model,
                 }
 
             logger.info(f"Retrieved {len(retrieved_docs)} documents")
@@ -82,6 +99,11 @@ class RAGPipeline:
 
             # Step 4: Extract sources
             sources = self._extract_sources(retrieved_docs)
+
+            # Step 5: Check faithfulness
+            if self._answer_seems_unfaithful(answer, retrieved_docs):
+                logger.warning("Generated answer may be unfaithful")
+                logger.info("Note: Answer synthesis detected - monitoring for quality")
 
             logger.info("Query processed successfully")
 
@@ -182,3 +204,66 @@ class RAGPipeline:
         except Exception as e:
             logger.error(f"Error in streaming query: {e}")
             yield f"Error: {str(e)}"
+
+    def _answer_seems_unfaithful(self, answer: str, retrieved_docs: List[Dict]) -> bool:
+        """
+        Check if answer contains information not in context.
+
+        Simple heuristic: Check for common hallucination phrases.
+        """
+        # CRITICAL HALLUCINATION INDICATORS ONLY
+        hallucination_indicators = [
+            "it is widely known",
+            "according to common knowledge",
+            "in my experience",
+            "as we all know",
+            "everyone knows",
+            "i think",
+            "i believe",
+            "in my opinion",
+        ]
+
+        answer_lower = answer.lower()
+
+        # Check for clear hallucination phrases
+        for indicator in hallucination_indicators:
+            if indicator in answer_lower:
+                logger.warning(f"Hallucination phrase detected: '{indicator}'")
+                return True
+
+        return False
+
+    def _build_strict_prompt(self, question: str, retrieved_docs: List[Dict]) -> str:
+        """Build extremely strict prompt for regeneration."""
+        context = self.prompt_builder._format_context_enhanced(retrieved_docs)
+
+        strict_template = """Context (USE ONLY THIS):
+{context}
+
+Question: {question}
+
+CRITICAL: Your answer MUST:
+1. Use ONLY information from the context above
+2. Quote directly from context
+3. Be shorter than the context
+4. Say "I don't have enough information" if answer isn't clearly in context
+
+Answer:"""
+
+        return strict_template.format(context=context, question=question)
+
+    def _generate_with_retry(self, prompt: str) -> str:
+        """Generate answer with lower temperature."""
+        messages = [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ]
+
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=0.0,  # Most deterministic
+            max_tokens=500,  # Shorter
+        )
+
+        return response.choices[0].message.content.strip()

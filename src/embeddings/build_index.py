@@ -64,19 +64,27 @@ class IndexBuilder:
         """
         logger.info(f"Building FAISS index for {len(documents)} documents")
 
-        # Extract texts for embedding
-        texts = [doc.content for doc in documents]
+        # Enhance text for embedding with metadata
+        texts_for_embedding = []
+        for doc in documents:
+            metadata = doc.metadata
+            metadata_prefix = f"Document: {metadata.get('filename', '')} | "
+            enhanced_text = metadata_prefix + doc.content
+            texts_for_embedding.append(enhanced_text)
 
         # Generate embeddings
         logger.info("Generating embeddings...")
-        embeddings = self.embedder.embed_batch(texts, batch_size=50)
+        embeddings = self.embedder.embed_batch(texts_for_embedding, batch_size=50)
 
-        # Convert to numpy array
+        # Convert to numpy array and normalize
         embeddings_array = np.array(embeddings).astype("float32")
 
-        # Create FAISS index
+        # FIXED: Normalize embeddings for cosine similarity
+        faiss.normalize_L2(embeddings_array)
+
+        # FIXED: Create FAISS index using Inner Product (cosine similarity)
         logger.info("Creating FAISS index...")
-        index = faiss.IndexFlatL2(self.dimension)
+        index = faiss.IndexFlatIP(self.dimension)  # Changed from IndexFlatL2
         index.add(embeddings_array)
 
         # Prepare metadata
